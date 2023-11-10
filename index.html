@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <meta charset="utf-8"/>
+      <title>Successional stages Rhineland-Palatinate</title>
+	  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		crossorigin=""/>
+    
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+		crossorigin=""></script>
+	  
+	  
+	   <!-- Full screen map: -->
+	   <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+   </head>
+
+   <body>
+      <div id = "map"></div>
+      <script>
+	  
+	  
+         // Creating map options
+         var mapOptions = {
+            center: [50.118346,7.308953],
+            zoom: 8,
+            maxZoom: 14
+         }
+         
+         // Creating a map object
+         var map = new L.map('map', mapOptions);
+         
+         // Creating base layer
+         var osmLayer =  L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+		maxZoom: 18,
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+		});
+		 map.addLayer(osmLayer);
+		 
+		var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+		attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+		});
+		
+		var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+		maxZoom: 17,
+		attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+		});
+		
+		////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////
+		
+		
+		 // Add WSM with douglas fir
+       	 var douglasFir = L.tileLayer.wms('https://vhrz1078.hrz.uni-marburg.de:8201/public/P99EY9EK4O4U/dou', {layers: ['color'],
+                		format: 'image/png',
+				uppercase: true,
+				attribution: '| &copy; GeoBasis-DE/LVermGeoRP 2023 | &copy; European Space Agency – ESA produced from ESA remote sensing data | Landesforsten Rheinland-Pfalz 2014'
+				});
+         // Adding layer to the map
+         map.addLayer(douglasFir);
+		
+		 // Add WSM with beech
+       		 var beech = L.tileLayer.wms('https://vhrz1078.hrz.uni-marburg.de:8201/public/R2R3MGAVUOGF/beech', {layers: ['color'],
+                		format: 'image/png',
+				uppercase: true,
+				attribution: '| &copy; GeoBasis-DE/LVermGeoRP 2023 | &copy; European Space Agency – ESA produced from ESA remote sensing data | Landesforsten Rheinland-Pfalz 2014'
+				});
+         map.addLayer(beech);
+		 
+		 // add WMS oak
+		 var oak = L.tileLayer.wms('https://vhrz1078.hrz.uni-marburg.de:8201/public/4JP8190VTL8V/oak', {layers: ['color'],
+                		format: 'image/png',
+				uppercase: true,
+				attribution: '| &copy; GeoBasis-DE/LVermGeoRP 2023 | &copy; European Space Agency – ESA produced from ESA remote sensing data | Landesforsten Rheinland-Pfalz 2014'
+				});
+		map.addLayer(oak);
+		// add wms spruce
+		 var spruce = L.tileLayer.wms('https://vhrz1078.hrz.uni-marburg.de:8201/public/KRO0KLGGAT7V/spruce', {layers: ['color'],
+                		format: 'image/png',
+				uppercase: true,
+				attribution: '| &copy; GeoBasis-DE/LVermGeoRP 2023 | &copy; European Space Agency – ESA produced from ESA remote sensing data | Landesforsten Rheinland-Pfalz 2014'
+				});
+		map.addLayer(spruce);
+
+		// add wms pine
+		 var pine = L.tileLayer.wms('https://vhrz1078.hrz.uni-marburg.de:8201/public/WLOXCTYEX37G/pine', {layers: ['color'],
+                		format: 'image/png',
+				uppercase: true,
+				attribution: '| &copy; GeoBasis-DE/LVermGeoRP 2023 | &copy; European Space Agency – ESA produced from ESA remote sensing data | Landesforsten Rheinland-Pfalz 2014'
+				});
+		map.addLayer(pine);
+		
+		// add wms larch
+		 var larch = L.tileLayer.wms('https://vhrz1078.hrz.uni-marburg.de:8201/public/ESY7D5CXNV54/larch', {layers: ['color'],
+                		format: 'image/png',
+				uppercase: true,
+				attribution: '| &copy; GeoBasis-DE/LVermGeoRP 2023 | &copy; European Space Agency – ESA produced from ESA remote sensing data | Landesforsten Rheinland-Pfalz 2014'
+				});
+		map.addLayer(larch);
+		
+		////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////
+		
+		 // add Layer control
+		var baseMaps = {
+		"Open Street Map": osmLayer,
+		"Esri World Imagery": Esri_WorldImagery,
+		"Open Topo Map": OpenTopoMap
+		};
+	
+	
+		var overlayMaps = {
+		"Douglas fir": douglasFir,
+		"Larch": larch,
+		"Pine": pine,
+		"Spruce": spruce,
+		"Beech": beech,
+		"Oak": oak
+				};
+	
+	
+		
+		L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);
+
+					
+		
+		
+	/*Legend specific*/
+	var legend = L.control({ position: "bottomright" });
+
+	legend.onAdd = function(map) {
+		var div = L.DomUtil.create("div", "legend");
+		div.innerHTML += "<h4>Successional stages</h4>";
+		div.innerHTML += '<i style="background: #ffc5fb"></i><span>Douglas fir qualification</span><br>';
+		div.innerHTML += '<i style="background: #e799f4"></i><span>Douglas fir dimensioning</span><br>';
+		div.innerHTML += '<i style="background: #dc0fff"></i><span>Douglas fir maturing</span><br>';
+		div.innerHTML += '<i style="background: #e2a458"></i><span>Larch dimensioning</span><br>';
+		div.innerHTML += '<i style="background: #ff740f"></i><span>Larch maturing</span><br>';
+		div.innerHTML += '<i style="background: #a5afde"></i><span>Pine dimensioning</span><br>';
+		div.innerHTML += '<i style="background: #463beb"></i><span>Pine maturing</span><br>';
+		div.innerHTML += '<i style="background: #ebb9b4"></i><span>Spruce qualification</span><br>'; 
+		div.innerHTML += '<i style="background: #eb6558"></i><span>Spruce dimensioning</span><br>'; 
+		div.innerHTML += '<i style="background: #dc0f0f"></i><span>Spruce maturing</span><br>'; 
+		div.innerHTML += '<i style="background: #addd9a"></i><span>Beech qualification </span><br>'; 
+		div.innerHTML += '<i style="background: #15f515"></i><span> Beech dimensioning</span><br>'; 
+		div.innerHTML += '<i style="background: #216307"></i><span> Beech maturing</span><br>'; 
+		div.innerHTML += '<i style="background: #e8eab6"></i><span> Oak qualification</span><br>'; 
+		div.innerHTML += '<i style="background: #deea13"></i><span> Oak dimensioning</span><br>'; 
+		div.innerHTML += '<i style="background: #b6bf0f"></i><span> Oak maturing</span><br>'; 
+		
+		/*div.innerHTML += "<h4>Area of Applicability</h4>";
+		div.innerHTML += '<i style="background: #000000"></i><span>Not Applicable</span><br>';
+		
+		div.innerHTML += "<h4>Habitatmodellierungen</h4>";
+		div.innerHTML += '<i style="background: #2b83ba"></i><span>0.00</span><br>';
+		div.innerHTML += '<i style="background: #abdda4"></i><span>0.25</span><br>';
+		div.innerHTML += '<i style="background: #ffffbf"></i><span>0.50</span><br>';
+		div.innerHTML += '<i style="background: #fdae61"></i><span>0.75</span><br>';
+		div.innerHTML += '<i style="background: #d7191c"></i><span>1.00</span><br>';
+		*/
+	return div;
+	};
+
+	legend.addTo(map);
+	
+	
+	
+		
+		
+      </script>
+   </body>
+   
+    
+   <style>	
+
+	/*Legend specific layout with css*/
+	.legend {
+		padding: 6px 8px;
+		font: 14px Arial, Helvetica, sans-serif;
+		background: white;
+		background: rgba(255, 255, 255, 0.8);
+		/*box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);*/
+		/*border-radius: 5px;*/
+		line-height: 24px;
+		color: #555;
+	}
+	.legend h4 {
+		text-align: center;
+		font-size: 16px;
+		margin: 2px 12px 8px;
+		color: #777;
+	}
+
+	.legend span {
+		position: relative;
+		bottom: 3px;
+	}
+
+	.legend i {
+		width: 18px;
+		height: 18px;
+		float: left;
+		margin: 0 8px 0 0;
+		opacity: 0.7;
+	}
+
+	.legend i.icon {
+	background-size: 18px;
+	background-color: rgba(255, 255, 255, 1);
+	}
+
+		
+	</style>	
+   
+   
+</html>
+Footer
