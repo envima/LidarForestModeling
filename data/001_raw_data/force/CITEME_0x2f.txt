@@ -1,0 +1,87 @@
+FORCE - Framework for Operational Radiometric Correction for Environmental monitoring
+Version 3.7.7
+Copyright (C) 2013-2020 David Frantz, david.frantz@geo.hu-berlin.de
+
+FORCE is free software under the terms of the GNU General Public License as published by the Free Software Foundation, see <http://www.gnu.org/licenses/>.
+
+Thank you for using FORCE! This software is being developed in the hope that it will be helpful for you and your work.
+
+However, it is requested that you to use the software in accordance with academic standards and fair usage. Without this, software like FORCE will not survive. This includes citation of the software and the scientific publications, proper acknowledgement in any public presentation, or an offer of co-authorship of scientific articles in case substantial help in setting up, modifying or running the software is provided by the author(s).
+
+Here are suggestions for references to be cited. This list is based on your specific parameterization:
+
+FORCE - the overall framework:
+Frantz, D. (2019). FORCE—Landsat + Sentinel-2 Analysis Ready Data and Beyond. Remote Sensing, 11, 1124
+
+RBF interpolation:
+Schwieder, M., Leitão, P.J., da Cunha Bustamante, M.M., Ferreira, L.G., Rabe, A., & Hostert, P. (2016). Mapping Brazilian savanna vegetation gradients with Landsat time series. International Journal of Applied Earth Observation and Geoinformation, 52, 361-370
+
+CAT transformation:
+Hird, J.N., Castilla, G., McDermid, G.J., & Bueno, I.T. (2016). A Simple Transformation for Visualizing Non-seasonal Landscape Change From Dense Time Series of Satellite Data. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 9, 3372-3383
+
+NDVI:
+Tucker, C.J. (1979). Red and Photographic Infrared Linear Combinations for Monitoring Vegetation. Remote Sensing of Environment, 8, 127-150
+
+EVI:
+Huete, A., Didan, K., Miura, T., Rodriguez, E.P., Gao, X., & Ferreira, L.G. (2002). Overview of the Radiometric and Biophysical Performance of the MODIS Vegetation Indices. Remote Sensing of Environment, 83, 195-213
+
+NBR:
+Key, C. H., and N. C. Benson. Landscape assessment: ground measure of severity, the Composite Burn Index; and remote sensing of severity, the Normalized Burn Ratio. FIREMON: Fire effects monitoring and inventory system 2004 (2005).
+
+SAVI, SARVI, ARVI:
+Huete, A. (1988). Soil-Adjusted Vegetation Index (SAVI). Remote Sensing of Environment, 25, 295-309
+Kaufman, Y., Tanré, D. (1992). Atmospherically Resistant Vegetation Index (ARVI) for EOS-MODIS. IEEE Transactions On Geoscience And Remote Sensing, 30 (2), 261-270
+
+NDBI:
+Zha, Y., Gao, J., & Ni, S. (2003). Use of normalized difference built-up index in automatically mapping urban areas from TM imagery. International Journal of Remote Sensing, 24, 583-594
+
+NDWI:
+McFeeters, S.K. (1996). The use of the Normalized Difference Water Index (NDWI) in the delineation of open water features. International Journal of Remote Sensing, 17, 1425-1432
+
+MNDWI:
+Xu, H. (2006). Modification of normalised difference water index (NDWI) to enhance open water features in remotely sensed imagery. International Journal of Remote Sensing, 27, 3025-3033
+
+NDSI:
+Hall, D.K., Riggs, G.A., & Salomonson, V.V. (1995). Development of Methods for Mapping Global Snow Cover using Moderate Resolution Imaging Spectroradiometer Data. Remote Sensing of Environment, 54, 127-140
+
+NDTI:
+Van Deventer, A.P., Ward, A.D., Gowda, P.H., Lyon, J.G. (1997). Using Thematic Mapper data to identify contrasting soil plains and tillage practices. Photogrammetric engineering and remote sensing, 63, 87-93
+
+NDMI:
+Gao, B. (1996). NDWI — A normalized difference water index for remote sensing of vegetation liquid water from space. Remote Sensing of Environment, 58, 3, 257-266
+
+kNDVI:
+Camps-Valls, G., Campos-Taberner, M., Moreno-Martínez, Á., Walther, S., Duveiller, G., Cescatti, A., Mahecha, M.D., Muñoz-Marí, J., García-Haro, F.J., Guanter, L., Jung, M., Gamon, J.A., Reichstein, M., & Running, S.W. (2021). A unified vegetation index for quantifying the terrestrial biosphere. Science Advances, 7, eabc7447.
+
+NDRE1:
+Gitelson, A.A., Merzlyak, M., 1994. Spectral reflectance changes associated with autumn senescence of Aesculus hippocastanum L. and Acer platanoides L. leaves. Spectral features and relation to chlorophyll estimation. J. Plant Physiol. 143, 286292.
+
+NDRE2:
+Barnes, E. M., Clarke, T. R., Richards, S. E., Colaizzi, P. D., Haberland, J., Kostrzewski, M., ... & Moran, M. S. (2000, July). Coincident detection of crop water stress, nitrogen status and canopy density using ground based multispectral data. Proceedings of the Fifth International Conference on Precision Agriculture, Bloomington, MN, USA (Vol. 1619).
+
+CIre:
+Gitelson, A.A., Gritz, Y., Merzlyak, M., 2003. Relationships between leaf chlorophyll content and spectral reflectance and algorithms for non-destructive chlorophyll assessment in higher plant leaves. J. Plant Physiol. 160, 271282.
+
+NDVIre1:
+Gitelson, A.A., Merzlyak, M., 1994. Spectral reflectance changes associated with autumn senescence of Aesculus hippocastanum L. and Acer platanoides L. leaves. Spectral features and relation to chlorophyll estimation. J. Plant Physiol. 143, 286292.
+
+NDVIre2:
+Fernández-Manso, A., Fernández-Manso, O., Quintano, C., 2016. Sentinel-2A red-edge spectral indices suitability for discriminating burn severity. Int. J. Appl. Earth Obs. Geoinf. 50, 170175. https://doi.org/10.1016/j.jag.2016.03.005
+
+NDVIre3:
+Fernández-Manso, A., Fernández-Manso, O., Quintano, C., 2016. Sentinel-2A red-edge spectral indices suitability for discriminating burn severity. Int. J. Appl. Earth Obs. Geoinf. 50, 170175. https://doi.org/10.1016/j.jag.2016.03.005
+
+NDVIre1n:
+Fernández-Manso, A., Fernández-Manso, O., Quintano, C., 2016. Sentinel-2A red-edge spectral indices suitability for discriminating burn severity. Int. J. Appl. Earth Obs. Geoinf. 50, 170175. https://doi.org/10.1016/j.jag.2016.03.005
+
+NDVIre2n:
+Fernández-Manso, A., Fernández-Manso, O., Quintano, C., 2016. Sentinel-2A red-edge spectral indices suitability for discriminating burn severity. Int. J. Appl. Earth Obs. Geoinf. 50, 170175. https://doi.org/10.1016/j.jag.2016.03.005
+
+NDVIre3n:
+Fernández-Manso, A., Fernández-Manso, O., Quintano, C., 2016. Sentinel-2A red-edge spectral indices suitability for discriminating burn severity. Int. J. Appl. Earth Obs. Geoinf. 50, 170175. https://doi.org/10.1016/j.jag.2016.03.005
+
+MSRre:
+Chen, J., 1996. Evaluation of vegetation indices and modified simple ratio for boreal applications. Can. J. Remote Sens. 22, 229242.
+
+MSRren:
+Fernández-Manso, A., Fernández-Manso, O., Quintano, C., 2016. Sentinel-2A red-edge spectral indices suitability for discriminating burn severity. Int. J. Appl. Earth Obs. Geoinf. 50, 170175. https://doi.org/10.1016/j.jag.2016.03.005
