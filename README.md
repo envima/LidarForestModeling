@@ -9,13 +9,21 @@ A preprint of this study is currently available [here](https://osf.io/preprints/
 Data from five different sources were used for this study. A vector polygon was used to delineate the study area, a forest mask showing the forest areas in the study area and Sentinel-2 and LiDAR data as environmental variables as well as forest inventory data as a response variable.
 
 #### 1. Border of the study area
-Ein polygon vector file wurde verwendet um die Study area abzugrenzen in diesem fall war es die Landesgrenze des bundeslandes Rhienland-Pfalz. Dieses Shapefile kann hier 
+A polygon vector file was used to delineate the study area in this case it was the border of the federal state of Rhineland-Palatinate in Germany. The shapefile used in this study can be downloaded from the State Office for Surveying and Geoinformation (Landesamt für Vermessung und Geobasisinformation) [here](http://geo5.service24.rlp.de/wfs/verwaltungsgrenzen_rp.fcgi?&request=GetFeature&TYPENAME=landesgrenze_rlp&VERSION=1.1.0&SERVICE=WFS&OUTPUTFORMAT=SHAPEZIP). For further information have a look at the [README_border file](data/001_raw_data/border/README_border.txt).
 
-#### 2. Forest mask
+#### 2. Sentinel-2 data
+Secondly a Sentinel-2 time series is nedded, we downloaded and processed all Sentinel-2 data with the software 'Framework for Operational Radiometric Correction for Environmental monitoring' (FORCE; version 3.7.10; [Frantz 2019](https://doi.org/10.3390/rs11091124)). As our study area is quite large (a complete federal state) therefore keep in mind that the processing time and computational power as well as storage space are quite high. To process the exact same dataset follow the code in the workflow file we have provided [here](data/001_raw_data/force/FORCE_workflow). If you want to work with your own study area we suggest having a look at the study by [Bhandari et al (2024)](https://doi.org/10.1038/s41597-024-03283-3) where the workflow is explained in more detail. In total, the final Sentinel-2 data set for all of Rhineland-Palatinate is 440 GB in size and therefore not provided here, but it can be reproduced with the code in the [workflow file](data/001_raw_data/force/FORCE_workflow).
 
-#### 3. Forest inventory data
+#### 3. Forest mask
+We also use a forest mask to limit the study area to the forest areas. This forest mask was created from the [Copernicus high-resolution tree-cover 2018](https://land.copernicus.eu/en/products/high-resolution-layer-forest-type/forest-type-2018?tab=metadata) at 10m resolution. The dataset is available for all of Europe and was downloaded for Rhineland-Palatinate from the [Copernicus Land Monitoring Service](https://land.copernicus.eu/en).
 
-#### 4. Sentinel-2 data
+#### 4. LiDAR data
+Des Weiteren werden LiDAR Daten verwendet, die vom 
+3TB
 
-#### 5. LiDAR data
+#### 5. Forest inventory data
 
+
+
+#### Acknowledgments
+These tree species groups and successional stages models are part of the project "Development of forest structure-based habitat models for forest bats" funded by the Rhineland-Palatinate State Office for the Environment (Landesamt für Umwelt Rheinland-Pfalz). The LiDAR data and forestry data were also provided as part of this project. The development of improved methods for remote sensing based classification of forests was conducted within the Natur 4.0 project funded by the Hessian state offensive for the development of scientific-economic excellence (LOEWE).
