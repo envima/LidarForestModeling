@@ -9,7 +9,7 @@ A preprint of this study is currently available [here](https://osf.io/preprints/
 Data from five different sources were used for this study. A vector polygon was used to delineate the study area, a forest mask showing the forest areas in the study area and Sentinel-2 and LiDAR data as environmental variables as well as forest inventory data as a response variable.
 
 #### 1. Border of the study area
-Um die Study area abzugrenzen 
+Ein polygon vector file wurde verwendet um die Study area abzugrenzen in diesem fall war es die Landesgrenze des bundeslandes Rhienland-Pfalz. Dieses Shapefile kann hier 
 
 #### 2. Forest mask
 
