@@ -1,0 +1,150 @@
+#####################################
+# 1. set up the working environment
+#####################################
+
+# change this path to your working directory
+cd /yourWorkingDirectory/
+
+#create all kind of needed directories
+mkdir -p level1/level1-datapool/Landsat
+mkdir -p level1/meta/
+mkdir level2
+mkdir catalog
+mkdir param
+mkdir log
+mkdir misc
+mkdir temp
+mkdir -p europe/base ###adjust for diff continent
+mkdir -p europe/level2
+
+# Download metadata catalouge once before first use
+force-level1-csd -u catalog/
+
+
+#####################################################
+# 2. Download level 1 Sentinel2 and Landsat data
+#####################################################
+
+#2.1 download sentinel 2 data for 2019 to 2021
+sudo docker run -v /yourWorkingDirectory/:/opt/data --user "$dogbert" --env FORCE_CREDENTIALS=/app/credentials -v $HOME:/app/credentials davidfrantz/force force-level1-csd -c 0,5 -n -d 20190101,20211231 -s S2A,S2B /opt/data/catalog/ /opt/data/level1/level1-datapool/ /opt/data/level1/level1-datapool/queue.txt /opt/data/misc/RLP_4326.gpkg
+
+# 2.2 create file with download links for Landsat using landsatlinks:
+# Please keep in mind, that the Landsat tiles should cover the extent of the Sentinel-2 tiles. The reserach shapefile is not enough, selects
+#
+landsatlinks landsat_download_links.txt OLI /yourWorkingDirectory/misc/Landsat_pathrowlist.txt --daterange 2014-01-01,2019-12-31 -s /yourWorkingDirectory/misc/landsatlink.txt
+
+# 2.3 download all links in the generated list using wget
+# run parallel with xargs
+cat /yourWorkingDirectory/urls_landsat_ot_c2_l1_20220720T134838.txt | xargs -n 1 -P 50 wget -q -P /yourWorkingDirectory/level1/level1-datapool/Landsat/landsatlinks --content-disposition
+
+
+###################################
+# 3. Landsat ARD
+###################################
+
+# 3.1 DEM
+# provide a DEM for enhanced cloud and cloud shadow detection, atmospheric correction, and to perform the topographic correction
+# download SRTM 1-arc second global from earth explorer
+# built vrt with force
+find misc/dem/ -name '*.tif' > misc/dem/srtm.txt
+gdalbuildvrt -input_file_list misc/dem/srtm.txt misc/dem/srtm.vrt
+
+# 3.2 extract tar files
+cd /yourWorkingDirectory/level1/level1-datapool/Landsat/landsatlinks
+for f in *.tar; do 
+y=${f%.tar} 
+mkdir $y 
+sudo tar -xf "$f" -C $y; done
+
+# 3.3 Download parameter file
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-parameter /opt/data/param/landsat_level2.prm LEVEL2
+
+# 3.4 create queue file
+
+# 3.5 Force Level2
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-level2 /opt/data/param/landsat_level2.prm
+
+#create report
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-level2-report /opt/data/log/
+
+####################################
+# 4. Landsat base image
+####################################
+
+
+# 4.1 Download parameter file
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-parameter /opt/data/param/ls_base.prm TSA
+
+# 4.2 get Tile extent
+#get the coords for the TSA prm file
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-tile-extent /opt/data/misc/RLP_4326.gpkg /opt/data/level2/europe/ /opt/data/level2/europe/base/TSA_extent_info.txt
+
+# 4.3 Force Level3
+#add additional tile extent in the params file so all folders are read in 2 extra in each direction
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-higher-level /opt/data/param/ls_base.prm 
+
+# 4.4 base image mosaic
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-mosaic /opt/data/europe/base/
+
+####################################
+# 5. Sentinel2 Level2 ARD
+####################################
+
+#5.1 parameter file coregistration
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-parameter /opt/data/param/sentinel_level2.prm LEVEL2
+
+# 5.2 Force Level2
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-level2 /opt/data/param/sentinel_level2.prm
+
+#create report
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-level2-report /opt/data/log/
+
+####################################
+# 6. Sentinel2 TSA and indices Level3
+####################################
+
+#6.1 parameter file TSA
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-parameter /opt/data/param/sentinel_level3.prm TSA
+
+# 6.2 Force Sentinel Level3 TSA monthly aggregates
+#add additional tile extent in the params file so all folders are read in 2 extra in each direction
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-higher-level /opt/data/param/sentinel_level3.prm
+
+
+
+####################################
+# 7. Sentinel2 mosaic/vrt
+####################################
+
+
+sudo docker run -v /yourWorkingDirectory/:/opt/data davidfrantz/force force-mosaic /opt/data/level3/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
