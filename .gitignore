@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+data/001_raw_data/force
+data/001_raw_data/HRL
+data/001_raw_data/lidar
+data/001_raw_data/FID
+data/001_raw_data/border
