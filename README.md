@@ -9,19 +9,25 @@ A preprint of this study is currently available [here](https://osf.io/preprints/
 The code to reproduce the study can be found in this github repository. The project follos the following folder structure:
 
 ```
-├── node_modules (.gitignore)
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   └── manifest.json
 ├── data
 │   ├── 001_raw_data
 │   │   │   ├── border
 │   │   │   ├── FID
 │   │   │   ├── force
+│   │   │   │   ├── data
+│   │   │   │   │   ├── mosaic
+│   │   │   │   │   ├── ...
+│   │   │   │   │   └── X0031_Y0026
+│   │   │   │   └── param
 │   │   │   ├── HRL
+│   │   │   │   └──  data
 │   │   │   └── lidar
+│   │   │   │   └──  data
 │   ├── 002_modelling
+│   │   │   ├── extract
+│   │   │   ├── modelling
+│   │   │   │   ├── test
+│   │   │   │   └── train
 │   │   │   ├── models
 │   │   │   └── prediction
 │   ├── 003_validation
@@ -29,9 +35,8 @@ The code to reproduce the study can be found in this github repository. The proj
 │   │   │   ├── plots
 │   │   │   └── tables
 ├── .gitignore
-├── package.json
+├── index.html
 └── README.md
-└── yarn.lock
 ```
 
 Detailed information on the data and how it was processed as well as sample data can be found at the linked project at [OSF](https://osf.io/cek5j/). In total data from five different sources were used for this study. A vector polygon was used to delineate the study area, a forest mask showing the forest areas in the study area and Sentinel-2 and LiDAR data as environmental variables as well as forest inventory data as a response variable.
