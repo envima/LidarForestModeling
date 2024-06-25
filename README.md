@@ -9,6 +9,8 @@ A preprint of this study is currently available [here](https://osf.io/preprints/
 The code to reproduce the study can be found in this github repository. The project follos the following folder structure:
 
 ```
+├── R
+│   └── functions
 ├── data
 │   ├── 001_raw_data
 │   │   │   ├── border
