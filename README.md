@@ -6,7 +6,7 @@ Comparison of successional stages models using Sentinel-2 and LiDAR variables vs
 A preprint of this study is currently available [here](https://osf.io/preprints/osf/nqfvh)
 
 ### Data & Code availability
-The code to reproduce the study can be found in this github repository. The project follos the following folder structure:
+The code to reproduce the study can be found in this github repository. The project follows the following folder structure:
 
 ```
 ├── R
